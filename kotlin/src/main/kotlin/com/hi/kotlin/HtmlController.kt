@@ -16,4 +16,10 @@ public class HtmlController {
     fun signForm(model: Model) : String{
         return "sign"
     }
+
+    @GetMapping("/login")
+    fun loginForm(model: Model) : String{
+        return "login"
+    }
+
 }
