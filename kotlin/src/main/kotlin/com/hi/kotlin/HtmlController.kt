@@ -10,6 +10,7 @@ public class HtmlController {
 
     @GetMapping("/")
     fun index(model:Model):String{
+        model.addAttribute("title", "Home")
         return "index"
     }
 
@@ -23,6 +24,9 @@ public class HtmlController {
         else if(formType.equals("login")){
             response="login"
         }
+
+        model.addAttribute("title", response)
+
         return response
     }
 }
