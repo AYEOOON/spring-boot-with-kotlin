@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam
 class HtmlController {
 
     @Autowired
-    lateinit var repository:Repository
+    lateinit var repository: Repository
 
     @GetMapping("/")
     fun index(model: Model): String {
