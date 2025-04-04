@@ -1,5 +1,7 @@
 package com.hi.kotlin
 
+import User
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 class HtmlController {
+
+    @Autowired
+    lateinit var repository:Repository
 
     @GetMapping("/")
     fun index(model: Model): String {
@@ -26,5 +31,18 @@ class HtmlController {
 
         model.addAttribute("title", response)
         return response
+    }
+
+    @PostMapping("/sign")
+    fun postSign(model: Model,
+                 @RequestParam(value="id") userId:String,
+                 @RequestParam(value="password") password:String):String{
+        try{
+            val user = repository.save(User(userId, password))
+            println(user.toString())
+        }catch(e:Exception){
+            e.printStackTrace()
+        }
+        return "index"
     }
 }
